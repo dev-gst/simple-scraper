@@ -9,8 +9,20 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    httpBuilderVersion = '1.0.4'
+    jsoupVersion = '1.14.3'
+    groovyVersion = '2.5.4'
+
+    junitVersion = '5.10.0'
+}
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
+    implementation "io.github.http-builder-ng:http-builder-ng-apache:$httpBuilderVersion"
+    implementation "org.jsoup:jsoup:$jsoupVersion"
+    implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
+
+    testImplementation platform("org.junit:junit-bom:$junitVersion")
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
