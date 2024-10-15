@@ -26,16 +26,16 @@ public class ParserService {
         return newUri;
     }
 
-    public static List<String> parseTISSHistory(Document doc) {
+    public static List<String> parseTISSHistory(Document doc, String rowToStop) {
         Elements tableRows = doc.select("tr");
         if (tableRows.isEmpty()) {
             throw new RuntimeException("Could not find table rows");
         }
 
-        return constructTableLines(tableRows);
+        return constructTableLines(tableRows, rowToStop);
     }
 
-    private static List<String> constructTableLines(Elements tableRows) {
+    private static List<String> constructTableLines(Elements tableRows, String rowToStop) {
         List<String> lines = new ArrayList<>();
         for (Element row : tableRows) {
 
@@ -49,7 +49,7 @@ public class ParserService {
             line.replace(line.length() - 1, line.length(), "");
             lines.add(line.toString());
 
-            if (line.toString().contains("Jan/2016")) {
+            if (line.toString().contains(rowToStop)) {
                 break;
             }
         }

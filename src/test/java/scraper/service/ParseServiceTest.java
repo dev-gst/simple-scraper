@@ -48,7 +48,7 @@ public class ParseServiceTest {
 
         doc = Jsoup.parse(sb.toString());
 
-        List<String> actualLines = ParserService.parseTISSHistory(doc);
+        List<String> actualLines = ParserService.parseTISSHistory(doc, "Jan/2016");
         List<String> expectedLines = List.of(
                 "Competência,Publicação,Início de Vigência",
                 "Jan/2016,15/1/2016,15/1/2016",
