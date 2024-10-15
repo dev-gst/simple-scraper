@@ -83,7 +83,7 @@ public class ScraperService {
                 if (subtask.equals(task2.get(2))) {
                     Thread.sleep(2000);
                     Document tissHistory = scrape(URI);
-                    List<String> lines = ParserService.parseTissHistory(tissHistory);
+                    List<String> lines = ParserService.parseTISSHistory(tissHistory);
 
                     DataIO.saveTissHistory(lines);
                     return;
