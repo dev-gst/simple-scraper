@@ -6,10 +6,10 @@ import java.util.List;
 
 public class DataIO {
 
-    public static void saveTissHistory(List<String> lines) {
+    public static void saveTissHistory(List<String> lines, String filePath) {
         System.out.println("Salvando Histórico das versões dos Componentes do Padrão TISS");
         try (OutputStreamWriter wr = new OutputStreamWriter(
-                new FileOutputStream("src/main/resources/downloads/tiss_history.csv"), StandardCharsets.UTF_8)
+                new FileOutputStream(filePath), StandardCharsets.UTF_8)
         ) {
 
             for (String line : lines) {
