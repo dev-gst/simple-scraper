@@ -10,21 +10,18 @@ import java.util.NoSuchElementException;
 
 public class ParserService {
 
-    public static String parseLink(Document doc, String currentSubTask) {
+    public static String parseLink(Document doc, String matchingText) {
         System.out.println("Parsing HTML...");
-        String newUri = null;
 
-        Elements links = doc.getElementsByTag("a");
-        for (Element link : links) {
-            if (link.text().contains(currentSubTask)) {
-                newUri = link.attr("href");
-                break;
-            }
-        }
+        String newUri = doc.getElementsByTag("a")
+                .stream()
+                .filter(e -> e.text().contains(matchingText))
+                .map(e -> e.attr("href"))
+                .findFirst()
+                .orElse(null);
 
         if (newUri == null) {
-            throw new NoSuchElementException("Could not find link for specified task: " + currentSubTask);
-        }
+            throw new NoSuchElementException("Could not find link with text: " + matchingText);        }
 
         return newUri;
     }
