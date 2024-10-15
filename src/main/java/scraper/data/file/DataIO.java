@@ -12,7 +12,6 @@ public class DataIO {
                 new FileOutputStream("src/main/resources/downloads/tiss_history.csv"), StandardCharsets.UTF_8)
         ) {
 
-            wr.write("\n");
             for (String line : lines) {
                 wr.write(line);
                 wr.write("\n");
