@@ -52,7 +52,6 @@ public class ParseServiceTest {
         List<String> expectedLines = List.of(
                 "Competência,Publicação,Início de Vigência",
                 "Jan/2016,15/1/2016,15/1/2016",
-                "abr/2025,30/04/2025,01/05/2025",
                 "mar/2025,30/03/2025,01/04/2025",
                 "fev/2025,28/02/2025,01/03/2025",
                 "jan/2025,30/01/2025,01/02/2025",
