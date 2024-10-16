@@ -1,4 +1,4 @@
-package scraper.service;
+package scraper.services;
 
 import jakarta.mail.*;
 import jakarta.mail.internet.*;

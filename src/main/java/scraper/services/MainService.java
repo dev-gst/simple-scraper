@@ -1,12 +1,12 @@
-package scraper.service;
+package scraper.services;
 
 import org.jsoup.nodes.Document;
 import scraper.data.file.DataIO;
 
 import java.util.List;
 
-import static scraper.service.ScraperService.downloadFile;
-import static scraper.service.ScraperService.scrape;
+import static scraper.services.ScraperService.downloadFile;
+import static scraper.services.ScraperService.scrape;
 
 public class MainService {
 
