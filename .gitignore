@@ -64,5 +64,5 @@ dist/
 
 ### Application Files ###
 src/main/resources/config/application.yaml
-src/main/resources/email/emailList.txt
+src/main/resources/email/recipients.txt
 !src/main/resources/downloads/*
