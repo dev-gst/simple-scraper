@@ -14,6 +14,7 @@ public class Env {
     private static final String EMAIL_PORT;
     private static final String EMAIL_USERNAME;
     private static final String EMAIL_PASSWORD;
+    private static final String EMAIL_FROM;
     private static final String EMAIL_STARTTLS_ENABLE;
     private static final String EMAIL_AUTH;
 
@@ -31,6 +32,7 @@ public class Env {
         EMAIL_PORT = config.get("email").get("port");
         EMAIL_USERNAME = config.get("email").get("username");
         EMAIL_PASSWORD = config.get("email").get("password");
+        EMAIL_FROM = config.get("email").get("from");
         EMAIL_STARTTLS_ENABLE = config.get("email").get("starttls-enable");
         EMAIL_AUTH = config.get("email").get("auth");
     }
@@ -49,6 +51,10 @@ public class Env {
 
     public static String getEmailPassword() {
         return EMAIL_PASSWORD;
+    }
+
+    public static String getEmailFrom() {
+        return EMAIL_FROM;
     }
     
     public static String getEmailStarttlsEnable() {
