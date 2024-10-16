@@ -1,1 +1,1 @@
-# Add email addresses of recipients in this file (one per line) and rename it to emailList.txt
+# Add email addresses of recipients in this file (one per line) and rename it to recipients.txt
