@@ -10,64 +10,64 @@ import java.util.NoSuchElementException;
 
 public class ParserService {
 
-    public static String parseLink(Document doc, String currentSubTask) {
+    public static String parseLink(Document doc, String matchingText) {
         System.out.println("Parsing HTML...");
-        String newUri = null;
 
-        Elements links = doc.getElementsByTag("a");
-        for (Element link : links) {
-            if (link.text().contains(currentSubTask)) {
-                newUri = link.attr("href");
-                break;
-            }
-        }
+        String newUri = doc.getElementsByTag("a")
+                .stream()
+                .filter(e -> e.text().contains(matchingText))
+                .map(e -> e.attr("href"))
+                .findFirst()
+                .orElse(null);
 
         if (newUri == null) {
-            throw new NoSuchElementException("Could not find link for specified task: " + currentSubTask);
-        }
+            throw new NoSuchElementException("Could not find link with text: " + matchingText);        }
 
         return newUri;
     }
 
-    public static List<String> parseTissHistory(Document doc) {
+    public static List<String> parseTISSHistory(Document doc, String rowToStop) {
         Elements tableRows = doc.select("tr");
         if (tableRows.isEmpty()) {
             throw new RuntimeException("Could not find table rows");
         }
 
-        Elements parsedRows = new Elements();
+        return constructTableLines(tableRows, rowToStop);
+    }
+
+    private static List<String> constructTableLines(Elements tableRows, String rowToStop) {
+        List<String> lines = new ArrayList<>();
         for (Element row : tableRows) {
 
-            Element parsedRow = new Element("tr");
+            // Get only the first 3 columns of each row
+            StringBuilder line = new StringBuilder();
             for (int i = 0; i < 3; i++) {
-                Element td = row.child(0);
-
-                if (i == 2) {
-                    td.text(td.text().trim());
-                } else {
-                    td.text(td.text().trim() + ",");
-                }
-
-                parsedRow.appendChild(td);
+                line.append(row.child(i).text().trim());
+                line.append(",");
             }
 
-            parsedRows.add(parsedRow);
+            line.replace(line.length() - 1, line.length(), "");
+            lines.add(line.toString());
 
-            if (parsedRow.text().contains("Jan/2016")) {
+            if (line.toString().contains(rowToStop)) {
                 break;
             }
         }
 
-        List<String> lines = new ArrayList<>();
+        return orderTableLines(lines);
+    }
 
-        String header = parsedRows.get(0).text().replaceAll(",\\s", ",");
-        lines.add(header);
+    private static List<String> orderTableLines(List<String> originalLines) {
+        List<String> lines = new ArrayList<>(originalLines);
 
-        for (int i = parsedRows.size() - 1; i >= 1; i--) {
-            String line = parsedRows.get(i).text().replaceAll(",\\s", ",");
+        String header = lines.get(0);
+        lines.sort((a, b) -> {
+            if (a.equals(header) || b.equals(header)) {
+                return 0;
+            }
 
-            lines.add(line);
-        }
+            return lines.indexOf(b) - lines.indexOf(a);
+        });
 
         return lines;
     }

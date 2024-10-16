@@ -1,11 +1,11 @@
 package scraper;
 
-import scraper.service.ScraperService;
+import scraper.service.MainService;
 
 public class Main {
 
     public static void main(String[] args) {
-        ScraperService scraperService = new ScraperService();
-        scraperService.start();
+        MainService mainService = new MainService();
+        mainService.start();
     }
 }

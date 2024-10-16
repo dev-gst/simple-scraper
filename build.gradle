@@ -14,7 +14,8 @@ ext {
     jsoupVersion = '1.14.3'
     groovyVersion = '2.5.4'
 
-    junitVersion = '5.10.0'
+    junitVersion = '5.11.2'
+    mockitoVersion = '5.14.1'
 }
 
 dependencies {
@@ -23,7 +24,9 @@ dependencies {
     implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
 
     testImplementation platform("org.junit:junit-bom:$junitVersion")
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-junit-jupiter:$mockitoVersion"
 }
 
 test {
