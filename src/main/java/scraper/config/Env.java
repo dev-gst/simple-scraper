@@ -8,7 +8,9 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 public class Env {
-    private static final String FILE_PATH = "src/main/resources/config/application.yaml";
+    private static final String CONFIG_FILE_PATH = "src/main/resources/config/application.yaml";
+    private static final String RECIPIENTS_FILE_PATH = "src/main/resources/email/recipients.txt";
+    private static final String DOWNLOADS_DIR = "src/main/resources/downloads";
 
     private static final String EMAIL_HOST;
     private static final String EMAIL_PORT;
@@ -22,7 +24,7 @@ public class Env {
         Yaml yaml = new Yaml();
         Map<String, Map<String, String>> config;
 
-        try (InputStream applicationConfigs = Files.newInputStream(Paths.get(FILE_PATH))) {
+        try (InputStream applicationConfigs = Files.newInputStream(Paths.get(CONFIG_FILE_PATH))) {
             config = yaml.load(applicationConfigs);
         } catch (Exception e) {
             throw new RuntimeException("Error loading application configs", e);
@@ -63,5 +65,13 @@ public class Env {
 
     public static String getEmailAuth() {
         return EMAIL_AUTH;
+    }
+
+    public static String getRecipientsFilePath() {
+        return RECIPIENTS_FILE_PATH;
+    }
+
+    public static String getDownloadsDir() {
+        return DOWNLOADS_DIR;
     }
 }
