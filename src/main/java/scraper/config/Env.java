@@ -14,6 +14,8 @@ public class Env {
     private static final String EMAIL_PORT;
     private static final String EMAIL_USERNAME;
     private static final String EMAIL_PASSWORD;
+    private static final String EMAIL_STARTTLS_ENABLE;
+    private static final String EMAIL_AUTH;
 
     static {
         Yaml yaml = new Yaml();
@@ -29,6 +31,8 @@ public class Env {
         EMAIL_PORT = config.get("email").get("port");
         EMAIL_USERNAME = config.get("email").get("username");
         EMAIL_PASSWORD = config.get("email").get("password");
+        EMAIL_STARTTLS_ENABLE = config.get("email").get("starttls-enable");
+        EMAIL_AUTH = config.get("email").get("auth");
     }
 
     public static String getEmailHost() {
@@ -45,5 +49,13 @@ public class Env {
 
     public static String getEmailPassword() {
         return EMAIL_PASSWORD;
+    }
+    
+    public static String getEmailStarttlsEnable() {
+        return EMAIL_STARTTLS_ENABLE;
+    }
+
+    public static String getEmailAuth() {
+        return EMAIL_AUTH;
     }
 }

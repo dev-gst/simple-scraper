@@ -3,4 +3,6 @@ email:
   port: ""
   username: ""
   password: ""
+  starttls-enable: ""
+  auth: ""
 
