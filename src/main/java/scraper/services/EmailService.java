@@ -32,6 +32,7 @@ public class EmailService {
     }
 
     public void sendEmail() throws MessagingException {
+        System.out.println("Sending email... This may take a while.");
         constructMessage();
 
         Transport.send(message);
