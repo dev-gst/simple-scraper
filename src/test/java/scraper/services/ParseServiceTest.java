@@ -1,4 +1,4 @@
-package scraper.service;
+package scraper.services;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
