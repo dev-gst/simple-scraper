@@ -3,25 +3,29 @@ plugins {
 }
 
 group = 'scraper'
-version = '1.0.1'
+version = '1.1.0'
 
 repositories {
     mavenCentral()
 }
 
 ext {
+    angusMailVersion = '2.0.3'
+    groovyVersion = '2.5.4'
     httpBuilderVersion = '1.0.4'
     jsoupVersion = '1.14.3'
-    groovyVersion = '2.5.4'
+    snakeyamlVersion = '2.3'
 
     junitVersion = '5.11.2'
     mockitoVersion = '5.14.1'
 }
 
 dependencies {
+    implementation "org.eclipse.angus:angus-mail:$angusMailVersion"
+    implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
     implementation "io.github.http-builder-ng:http-builder-ng-apache:$httpBuilderVersion"
     implementation "org.jsoup:jsoup:$jsoupVersion"
-    implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
+    implementation "org.yaml:snakeyaml:$snakeyamlVersion"
 
     testImplementation platform("org.junit:junit-bom:$junitVersion")
     testImplementation "org.junit.jupiter:junit-jupiter"

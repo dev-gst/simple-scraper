@@ -1,4 +1,4 @@
-package scraper.service;
+package scraper.services;
 
 import groovyx.net.http.HttpBuilder;
 import org.jsoup.nodes.Document;
